@@ -1,0 +1,47 @@
+
+#no-items {
+  padding: 2rem 0;
+  color: lightgrey;
+  font-style: italic;
+}
+
+.panel {
+  padding-top: 52px;
+  margin-bottom: 0 !important;
+}
+
+.panel-heading {
+    position: fixed;
+    width: 100%;
+    margin-top: -52px;
+    z-index: 100;
+}
+
+.read-item {
+  border-left-width: 10px;
+  -webkit-user-select: none;
+}
+
+.read-item.is-active {
+  background-color: #FAFAFA;
+}
+
+#loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#loader .fa {
+  color: #00D1B2;
+}
+
+#mark-read {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+#mark-read .tag {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+}

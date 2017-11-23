@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../bower_components/bulma/css/bulma.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
+    <style media="screen">
+      html, body, webview {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <section id="loader" class="hero is-fullheight has-text-centered">
+      <div class="hero-body">
+        <div class="container">
+
+          <div class="busy">
+            <h1 class="title">
+              <span class="icon is-large">
+                <i class="fa fa-circle-o-notch fa-spin fa-fw"></i>
+              </span>
+            </h1>
+          </div>
+
+          <div class="failed is-hidden">
+            <h1 class="title">Failed to Load</h1>
+            <h2 class="subtitle">Please check your Network Connection</h2>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <a id="mark-read" class="is-hidden">
+      <div class="block">
+        <span class="tag is-large is-primary">
+          <span class="icon">
+            <i class="fa fa-check fa-inverse"></i>
+          </span>&nbsp; Read
+        </span>
+      </div>
+    </a>
+
+    <webview src="about:blank"></webview>
+
+    <script>
+
+      // jQuery
+      $ = require('jquery')
+
+      // query-strin module
+      const queryString = require('query-string')
+
+      // Parse query string
+      const queryParams = queryString.parse(location.search)
+
+      // Get item index
+      let itemIndex = queryParams.itemIndex
+
+      // Get query string 'url'
+      let url = decodeURIComponent(queryParams.url)
+
+      // LOad remote content once webview is ready
+      $('webview').one('dom-ready', (e) => {
+
+        // Load item content url into webview
+        e.currentTarget.loadURL(url)
+
+      }).one('did-finish-load', () => {
+
+        // Hide loader to reveal webview
+        $('#loader').fadeOut(100)
+        // Show mark read button
+        $('#mark-read').removeClass('is-hidden')
+
+      // Handle failed load
+    }).on('did-fail-load', () => {
+
+        $('#mark-read').addClass('is-hidden')
+        $('#loader .busy').addClass('is-hidden')
+        $('#loader').fadeIn(100)
+        $('#loader .failed').removeClass('is-hidden')
+    })
+
+    // Handle mark-read click (delete)
+    $('#mark-read').click(() => {
+
+      // Parent window
+      window.opener.eval(`deleteItem(${itemIndex})`)
+      window.close()
+    })
+
+    </script>
+
+  </body>
+</html>

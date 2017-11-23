@@ -1,0 +1,39 @@
+{
+  "name": "Readit",
+  "version": "1.1.0",
+  "description": "Master Electron Course Project",
+  "main": "main.js",
+  "author": "Stackacademy.tv",
+  "homepage": "https://stackacademy.tv/courses/master-electron/",
+  "scripts": {
+    "start": "electron .",
+    "mac": "electron-builder -m",
+    "win": "electron-builder -w",
+    "build": "electron-builder -mwl",
+    "make-cert": "electron-builder create-self-signed-cert -p stackacademy"
+  },
+  "build": {
+    "appId": "com.stackacademy.readit",
+    "directories": {
+      "buildResources": "."
+    },
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "certificateFile": "private/stackacademy.pfx",
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "stackacademy"
+    },
+    "linux": {
+      "category": "Network"
+    }
+  },
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "query-string": "^4.3.2"
+  },
+  "devDependencies": {
+    "electron-builder": "^19.46.4"
+  }
+}

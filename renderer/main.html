@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Readit</title>
+
+    <link rel="stylesheet" href="../bower_components/bulma/css/bulma.css">
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="main.css">
+
+  </head>
+  <body>
+
+    <div class="panel">
+
+      <div class="panel-heading">
+        <div class="control is-grouped">
+          <p class="control">
+            <a class="button is-primary open-add-modal">
+              <span class="icon is-small">
+                <i class="fa fa-plus"></i>
+              </span>
+            </a>
+          </p>
+          <p class="control is-expanded has-icon has-icon-right">
+            <input class="input" id="search" type="text">
+            <span class="icon is-small">
+              <i class="fa fa-search"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div id="read-list" class="empty">
+        <p id="no-items" class="has-text-centered">No Items</p>
+      </div>
+
+    </div>
+
+    <div id="add-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+
+        <p class="control has-icon has-icon-right">
+          <input class="input is-medium" type="text" id="item-input" placeholder="Enter URL">
+          <span class="icon">
+            <i class="fa fa-globe"></i>
+          </span>
+        </p>
+
+        <div class="control is-grouped">
+          <p class="control">
+            <a class="button is-primary" id="add-button">
+              <span class="icon is-small">
+                <i class="fa fa-plus"></i>
+              </span>
+              <span><strong>Add Item</strong></span>
+            </a>
+          </p>
+          <p class="control">
+            <a class="button close-add-modal">Cancel</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+  <script>
+
+    // jQuery
+    $ = require('jquery')
+
+    // Main app script
+    require('./app')
+
+  </script>
+</html>
